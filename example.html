@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tooltip Example</title>
+	<style>
+		body{margin-top:1.5em;font-size:16px}
+		code{color:#55f;font-weight:bold}
+		.note{border-left:3px solid #ccc;padding-left:0.5em}
+		.corner{position:absolute;display:inline-block;height:1.5em;width:1.5em;text-align:center;background-color:#ccc;cursor:help}
+	</style>
+</head>
+<body>
+	<!-- example -->
+	<h3>Tooltips</h3>
+	<hr>
+	<p class="note"><i>Hover the text to see tooltips</i></p>
+	<p><span title="So boring!">Browser default tooltip.</span></p>
+	<p><span data-tooltip="Wow! So cool!">Fancy tooltip from <code>tooltip.js</code></span></p>
+	<p><span data-tooltip="Here I am!">An inline tooltip.</span></p>
+	<p><span data-tooltip="from-template">This one is from a template.</span></p>
+	<hr>
+	<p class="note"><i>Add tooltips to anything</i></p>
+	<form>
+		<table>
+			<tr>
+				<td>First name</td>
+				<td><input type="text" name="first_name" placeholder="Hover me..." data-tooltip="first-name"></td>
+			</tr>
+			<tr>
+				<td>Last name</td>
+				<td><input type="text" name="last_name" placeholder="Hover me..." data-tooltip="last-name"></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="text" name="email" placeholder="Hover me..." data-tooltip="email"></td>
+			</tr>
+			<tr>
+				<td>SSN</td>
+				<td><input type="password" name="ssn" placeholder="Hover me..." data-tooltip="ssn"></td>
+			</tr>
+		</table>
+	</form>
+	<hr>
+	<p>
+		<span>Click</span>
+		<input type="button" id="popup-toggle-button" value="here">
+		<span>to toggle a popup.</span>
+	</p>
+	<script>
+		(function () {
+			var toggle = document.getElementById('popup-toggle-button');
+
+			toggle.onclick = function () {
+				if (tooltip.isOpen) {
+					tooltip.close();
+					document.body.onclick = null;
+				}
+				else {
+					tooltip(toggle, 'set-location')
+					document.body.onclick = () => tooltip.close();
+				}
+			};
+		})();
+	</script>
+	<hr>
+	<p class="note">
+		<i>Check out the</i>
+		<span>❓</span>
+		<i>boxes to see how <code>tooltip.js</code> handles overflow.</i>
+	</p>
+	<div class="corner" style="top:0;left:0" data-tooltip="overflow">❓</div>
+	<div class="corner" style="top:0;right:0" data-tooltip="overflow">❓</div>
+	<div class="corner" style="bottom:0;left:0" data-tooltip="overflow">❓</div>
+	<div class="corner" style="bottom:0;right:0" data-tooltip="overflow">❓</div>
+	<hr>
+	<p>
+		<span>Press</span>
+		<input type="button" value="Done" onclick="window.close()">
+		<span>when you're done.</span>
+	</p>
+
+	<!-- templates -->
+	<div class="-tooltip-templates">
+		<span data-name="from-template">Boo! 👻</span>
+		<span data-name="first-name">This is the first of your many names</span>
+		<span data-name="last-name">This is the last of your many names</span>
+		<span data-name="email">We'll give this to other companies so they can send you things! How thoughtful.</span>
+		<span data-name="ssn">To provide an immersive site experience</span>
+		<form data-name="set-location">
+			<p>Set your location to see results in your area</p>
+			<input type="text" name="zip">
+			<input type="button" value="Submit" onclick="tooltip.close()">
+		</form>
+		<span data-name="overflow">These tooltips adjust to stay in the viewport!</span>
+	</div>
+
+	<!-- tooltip -->
+	<link rel="stylesheet" href="style/tooltip.css">
+	<div id="tooltip-container">
+		<div id="tooltip-content"></div>
+	</div>
+	<script src="src/tooltip.js"></script>
+</body>
+</html>

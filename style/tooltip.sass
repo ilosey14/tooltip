@@ -1,0 +1,50 @@
+// vars
+$border-width: 10px
+$border-radius: 5px
+$background-color: #f1f1f1
+
+// hide templates
+.-tooltip-templates
+	display: none
+
+// tooltip
+#tooltip-container
+	position: absolute
+	visibility: hidden
+	max-width: 300px
+	text-align: center
+	pointer-events: none
+	z-index: 9999
+
+	&::before,
+	&::after
+		content: '',
+		display: inline-block
+		margin: 0 $border-radius
+		border: $border-width solid transparent
+
+	&::after
+		border-top: $border-width solid $background-color
+
+	&.under
+		&::before
+			margin-bottom: -4px
+			border-bottom: $border-width solid $background-color
+
+		&::after
+			border-top-color: transparent
+
+	&.left
+		text-align: left
+
+	&.right
+		text-align: right
+
+	&.show
+		visibility: visible
+
+#tooltip-content
+	padding: $border-width
+	background-color: $background-color
+	border-radius: $border-radius
+	pointer-events: all
