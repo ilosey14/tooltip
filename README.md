@@ -63,5 +63,5 @@ Check the [docs][documentation] for everything you can do with this library.
 ### Clone the repo
 
 ```bash
-git clone https://github.com/ilosey/tooltip.git
+git clone https://github.com/ilosey14/tooltip.git
 ```
