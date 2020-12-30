@@ -16,29 +16,29 @@
 	<h3>Tooltips</h3>
 	<hr>
 	<p class="note"><i>Hover the text to see tooltips</i></p>
-	<p><span title="So boring!">Browser default tooltip.</span></p>
-	<p><span data-tooltip="Wow! So cool!">Fancy tooltip from <code>tooltip.js</code></span></p>
-	<p><span data-tooltip="Here I am!">An inline tooltip.</span></p>
-	<p><span data-tooltip="from-template">This one is from a template.</span></p>
+	<p><span title="So boring!" data-tooltip-ignore>Browser default tooltip.</span></p>
+	<p><span title="Wow! So cool!">Fancy tooltip from <code>tooltip.js</code></span></p>
+	<p><span title="Here I am!">An inline tooltip.</span></p>
+	<p><span title="from-template">This one is from a template.</span></p>
 	<hr>
 	<p class="note"><i>Add tooltips to anything</i></p>
 	<form>
 		<table>
 			<tr>
 				<td>First name</td>
-				<td><input type="text" name="first_name" placeholder="Hover me..." data-tooltip="first-name"></td>
+				<td><input type="text" name="first_name" placeholder="Hover me..." title="first-name"></td>
 			</tr>
 			<tr>
 				<td>Last name</td>
-				<td><input type="text" name="last_name" placeholder="Hover me..." data-tooltip="last-name"></td>
+				<td><input type="text" name="last_name" placeholder="Hover me..." title="last-name"></td>
 			</tr>
 			<tr>
 				<td>Email</td>
-				<td><input type="text" name="email" placeholder="Hover me..." data-tooltip="email"></td>
+				<td><input type="text" name="email" placeholder="Hover me..." title="email"></td>
 			</tr>
 			<tr>
 				<td>SSN</td>
-				<td><input type="password" name="ssn" placeholder="Hover me..." data-tooltip="ssn"></td>
+				<td><input type="password" name="ssn" placeholder="Hover me..." title="ssn"></td>
 			</tr>
 		</table>
 	</form>
@@ -70,10 +70,10 @@
 		<span>❓</span>
 		<i>boxes to see how <code>tooltip.js</code> handles overflow.</i>
 	</p>
-	<div class="corner" style="top:0;left:0" data-tooltip="overflow">❓</div>
-	<div class="corner" style="top:0;right:0" data-tooltip="overflow">❓</div>
-	<div class="corner" style="bottom:0;left:0" data-tooltip="overflow">❓</div>
-	<div class="corner" style="bottom:0;right:0" data-tooltip="overflow">❓</div>
+	<div class="corner" style="top:0;left:0" title="overflow">❓</div>
+	<div class="corner" style="top:0;right:0" title="overflow">❓</div>
+	<div class="corner" style="bottom:0;left:0" title="overflow">❓</div>
+	<div class="corner" style="bottom:0;right:0" title="overflow">❓</div>
 	<hr>
 	<p>
 		<span>Press</span>
@@ -88,7 +88,7 @@
 		<span data-name="last-name">This is the last of your many names</span>
 		<span data-name="email">We'll give this to other companies so they can send you things! How thoughtful.</span>
 		<span data-name="ssn">To provide an immersive site experience</span>
-		<form data-name="set-location">
+		<form data-name=set-location">
 			<p>Set your location to see results in your area</p>
 			<input type="text" name="zip">
 			<input type="button" value="Submit" onclick="tooltip.close()">

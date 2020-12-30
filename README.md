@@ -9,17 +9,18 @@ Customizable tooltips and popups for interactive sites.
 
 ---
 
-This library offers more customization over an element's default
+This library offers more customization over a browser's default
 `title` attribute for interacting with and displaying additional information.
 
-Add a tooltip to any element with the `data-tooltip` attribute.
+Add a tooltip to any element with the same standard `title` attribute.
 These can be the names of tooltip templates, or the content itself.
 Template commonly used content in a `-tooltip-templates` container.
+Multiple containers can be used should dynamic content need to come from different sources.
 
 ```html
 <!-- Assign tooltips in your content -->
-<p data-tooltip="Here I am!">An inline tooltip.</p>
-<p data-tooltip="from-template">This one is from a template.</p>
+<p title="Here I am!">An inline tooltip.</p>
+<p title="from-template">This one is from a template.</p>
 
 <!-- Include optional templates -->
 <div class="-tooltip-templates">
@@ -54,7 +55,14 @@ el.addEventListener('click', () => {
 *Note: opening the tooltip on another element would clear any open content.*
 *Set the `onclear` listener to interact with your content before it is changed.*
 
+Lastly, to ignore an element with a `title` attribute, use `data-tooltip-ignore`.
+
 See the `example.html` for a more detailed implementation and a live demo.
+
+### Limitations
+
+This library is meant to be used for simple tooltips and additional content about an element.
+It does not support creating multiple unique, active instances across elements.
 
 ## Documentation and More
 

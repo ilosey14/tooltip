@@ -8,7 +8,7 @@ const tooltip = function (element, content) {
 		tooltip.clear();
 
 	if (typeof tooltip.onopen === 'function')
-		tooltip.onopen();
+		tooltip.onopen.call(tooltip);
 
 	// set contents
 	if (typeof content === 'string') {
@@ -84,7 +84,7 @@ tooltip.onopen = undefined;
 tooltip.onclear = undefined;
 tooltip.onclose = undefined;
 
-tooltip.arrowPadding = parseInt(getComputedStyle(tooltip.container, ':after').borderWidth);
+tooltip.arrowPadding = parseInt(getComputedStyle(tooltip.container, ':after').borderTopWidth) || 0;
 tooltip.showDelay = 500;
 tooltip.closeDelay = 200;
 tooltip.isOpen = false;
@@ -134,7 +134,7 @@ tooltip.addListeners = function (element, content) {
  */
 tooltip.clear = function () {
 	if (typeof this.onclear === 'function')
-		this.onclear();
+		this.onclear.call(this);
 
 	this.content.textContent = null;
 
@@ -149,7 +149,7 @@ tooltip.close = function () {
 	if (!this.isOpen) return;
 
 	if (typeof this.onclose === 'function')
-		this.onclose();
+		this.onclose.call(this);
 
 	this.container.classList.remove('show', 'under', 'left', 'right');
 	this.isOpen = false;
@@ -173,8 +173,12 @@ tooltip.close = function () {
 	}
 
 	// attach tooltips
-	var elements = document.querySelectorAll('[data-tooltip]');
+	var elements = document.querySelectorAll('[title]');
 
-	for (let el of elements)
-		tooltip.addListeners(el, el.dataset.tooltip);
+	for (let el of elements) {
+		if (el.dataset.tooltipIgnore !== undefined) continue;
+
+		tooltip.addListeners(el, el.title);
+		el.title = '';
+	}
 })();
